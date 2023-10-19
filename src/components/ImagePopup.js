@@ -1,40 +1,11 @@
 import React, { useEffect, useRef } from "react";
+import useEscapeAndOutsideClick from "../hooks/useEscapeAndOutsideClick.js";
 
-function useOutsideClick(ref, onClose) {
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (ref.current && !ref.current.contains(event.target)) {
-                onClose();
-            }
-        }
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [ref, onClose]);
-}
-
-function useEscapeKey(onClose) {
-    useEffect(() => {
-        function handleEscape(event) {
-            if (event.key === "Escape") {
-                onClose();
-            }
-        }
-
-        document.addEventListener("keydown", handleEscape);
-        return () => {
-            document.removeEventListener("keydown", handleEscape);
-        };
-    }, [onClose]);
-}
 
 export default function ImagePopup(props) {
     const popupRef = useRef();
 
-    useOutsideClick(popupRef, props.onClose);
-    useEscapeKey(props.onClose);
+    useEscapeAndOutsideClick(popupRef, props.onClose, props.isOpen);
 
     return (
         <div
