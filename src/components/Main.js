@@ -5,7 +5,7 @@ import api from "../utils/Api.js";
 function Main(props) {
     const [userName, setUserName] = React.useState("Обновление...");
     const [userDescription, setUserDescription] = React.useState("Обновление...");
-    const [userAvatar, setUserAvatar] = React.useState(false);
+    const [userAvatar, setUserAvatar] = React.useState("");
 
     React.useEffect(() => {
         api

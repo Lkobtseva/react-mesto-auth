@@ -14,14 +14,16 @@ const useEscapeAndOutsideClick = (ref, onClose, isOpen) => {
             }
         };
 
-        document.addEventListener("keydown", handleEscape);
-        document.addEventListener("mousedown", handleOutsideClick);
+        if (isOpen) {
+            document.addEventListener("keydown", handleEscape);
+            document.addEventListener("mousedown", handleOutsideClick);
+        }
 
         return () => {
             document.removeEventListener("keydown", handleEscape);
             document.removeEventListener("mousedown", handleOutsideClick);
         };
-    }, [ref, onClose, isOpen]);
+    }, [ref, isOpen]);
 };
 
 export default useEscapeAndOutsideClick;
