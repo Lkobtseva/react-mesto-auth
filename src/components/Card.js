@@ -1,31 +1,53 @@
 import React from "react";
 import App from "./App.js";
 
-function Card(props) {
-    function handleClick() {
-        props.onCardClick(props);
-    }
-
+import { CurrentUserContext } from "../context/CurrentUserContext.js";
+function Card(card) {
+  const currentUser = React.useContext(CurrentUserContext);
+  // мусорка
+  const isOwn = card.owner._id === currentUser._id;
+  const cardDeleteButtonClassName = `card__deletebutton ${
+    isOwn ? "card__deletebutton_type_active" : ""
+  }`;
+  // лайк
+  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const cardLikeButtonClassName = `card__button ${
+    isLiked ? "card__button_active" : ""
+  }`;
+  // картинка
+  function handleClick() {
+    card.onCardClick(card);
+  }
+  // лайк
+  function handleLikeClick() {
+    card.onCardLike(card);
+  }
+  // удаление
+  function handleDeleteClick() {
+    card.onCardDelete(card);
+  }
     return (
         <li className="card">
             <img
                 className="card__image"
-                src={props.link}
-                alt={props.name}
+                src={card.link}
+                alt={card.name}
                 onClick={handleClick}
             />
             <button
                 type="reset"
-                className="card__deletebutton"
+                className={cardDeleteButtonClassName}
+        onClick={handleDeleteClick}
             />
             <div className="card__text">
-                <h2 className="card__title">{props.name}</h2>
+                <h2 className="card__title">{card.name}</h2>
                 <div className="card__like-container">
                     <button
-                        type="button"
-                        className="card__button"
+                   
+                       alt="Иконка лайка"
+                       className={cardLikeButtonClassName}
                     ></button>
-                    <span className="card__like-number">{props.likes.length}</span>
+                    <span className="card__like-number">{card.likes.length}</span>
                 </div>
             </div>
         </li>

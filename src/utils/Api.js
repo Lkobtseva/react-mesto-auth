@@ -23,8 +23,8 @@ class Api {
             body: JSON.stringify(data),
         }).then((res) => this._checkResponce(res));
     }
-    removeCard(cardId) {
-        return fetch(`${this._url}/cards/${cardId}`, {
+    removeCard(card) {
+        return fetch(`${this._url}/cards/${card}`, {
             method: "DELETE",
             headers: this._headers,
         }).then((res) => this._checkResponce(res));
@@ -49,14 +49,14 @@ class Api {
             body: JSON.stringify(data),
         }).then((res) => this._checkResponce(res));
     }
-    likeCard(cardId) {
-        return fetch(`${this._url}/cards/${cardId}/likes`, {
+    likeCard(card) {
+        return fetch(`${this._url}/cards/${card}/likes`, {
             method: "PUT",
             headers: this._headers,
         }).then((res) => this._checkResponce(res));
     }
-    unlikeCard(cardId) {
-        return fetch(`${this._url}/cards/${cardId}/likes`, {
+    unlikeCard(card) {
+        return fetch(`${this._url}/cards/${card}/likes`, {
             method: "DELETE",
             headers: this._headers,
         }).then((res) => this._checkResponce(res));
