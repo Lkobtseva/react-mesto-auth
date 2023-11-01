@@ -81,6 +81,19 @@ function App() {
         .catch((err) => console.log(err));
     }
   }
+  /*function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const likeMethod = isLiked ? api.unlikeCard : api.likeCard; // Определяем, нужно ли поставить лайк или убрать
+  
+    likeMethod(card._id)
+      .then((newCard) => {
+        console.log('llll');
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => console.log(err));
+  }*/
   // trash
   function handleCardDelete(card) {
     api
@@ -162,8 +175,8 @@ function App() {
             onClose={closeAllPopups}
             title={"Вы уверены?"}
             buttonText={"Да"}
-            /*name={"type_delete-card"}
-            form={"form_type_delete-card"}*/
+            name={"type_delete-card"}
+            form={"form_type_delete-card"}
           />
           <ImagePopup
             isOpen={selectedCard}

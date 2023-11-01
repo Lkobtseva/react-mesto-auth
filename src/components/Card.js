@@ -11,6 +11,7 @@ function Card(card) {
   }`;
   // лайк
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  console.log("Is liked:", isLiked);
   const cardLikeButtonClassName = `card__button ${
     isLiked ? "card__button_active" : ""
   }`;
@@ -46,6 +47,7 @@ function Card(card) {
                    
                        alt="Иконка лайка"
                        className={cardLikeButtonClassName}
+                       onClick={handleLikeClick}
                     ></button>
                     <span className="card__like-number">{card.likes.length}</span>
                 </div>

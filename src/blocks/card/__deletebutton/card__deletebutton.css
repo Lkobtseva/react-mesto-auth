@@ -1,4 +1,5 @@
 .card__deletebutton {
+    display: none;
     width: 18px;
     height: 19px;
     background-image: url(../../../images/deletebutton.svg);
@@ -14,4 +15,8 @@
 .card__deletebutton:hover {
     opacity: 0.6;
     cursor: pointer;
+  }
+
+  .card__deletebutton_type_active{
+   display:block;
   }
