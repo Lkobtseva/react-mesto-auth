@@ -4,15 +4,15 @@ import { Link, Navigate } from "react-router-dom";
 function Register({ isLoggedIn, onRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // меняем инпут
+
   function handleEmailChange(evt) {
     setEmail(evt.target.value);
   }
-  // меняем инпут
+
   function handlePasswordChange(evt) {
     setPassword(evt.target.value);
   }
-  // отправялем форму
+
   function handleSubmit(e) {
     e.preventDefault();
     onRegister(email, password);
