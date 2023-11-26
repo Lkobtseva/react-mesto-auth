@@ -24,7 +24,7 @@ function Login({ isLoggedIn, onLogin }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="auth__form" noValidate>
+    <form onSubmit={handleSubmit} className="auth__form">
       <h2 className="auth__title">Вход</h2>
       <input
         id="email"
@@ -35,6 +35,7 @@ function Login({ isLoggedIn, onLogin }) {
         className="auth__input"
         onChange={handleEmailChange}
         autoComplete="off"
+        required
       />
 
       <input
@@ -46,6 +47,7 @@ function Login({ isLoggedIn, onLogin }) {
         className="auth__input"
         onChange={handlePasswordChange}
         autoComplete="off"
+        required
       />
 
       <button type="submit" className="auth__button">

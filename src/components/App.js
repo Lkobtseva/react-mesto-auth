@@ -15,7 +15,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Login from "./Login.js";
 import InfoTooltip from "./InfoTooltip.js";
 import Register from "./Register.js";
-
+import useEscapeAndOutsideClick from "../hooks/useEscapeAndOutsideClick.js";
 
 
 function App() {
@@ -67,6 +67,10 @@ function App() {
     setSelectedCard(null);
     setIsSuccessPopupOpen(false);
   }
+  useEscapeAndOutsideClick(() => {
+    closeAllPopups();
+  }, isOpen);
+
   React.useEffect(() => {
     if (isLoggedIn)
     Promise.all([api.getProfileInfo(), api.getInitialCards()])
@@ -225,34 +229,6 @@ useEffect(() => {
     navigate("/sign-in", { replace: true });
   }
 
-  /*useEffect(() => {
-    console.log("useEffect для getProfileInfo", isLoggedIn);
-    if (isLoggedIn) {
-      api
-        .getProfileInfo()
-        .then((userData) => {
-          setCurrentUser(userData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [isLoggedIn]);
-
-  useEffect(() => {
-    console.log("useEffect для getInitialCards", isLoggedIn);
-    if (isLoggedIn) {
-      api
-        .getInitialCards()
-        .then((data) => {
-          setCards(data);
-        })
-        .catch((err) => {
-          console.log("Ошибка:", err);
-        });
-    }
-  }, [isLoggedIn]);*/
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root">
@@ -288,6 +264,7 @@ useEffect(() => {
               path="/sign-in"
               element={<Login onLogin={handleAuthUser} />}
             />
+             <Route path="*" element={<Navigate to="/sign-in" />} />
           </Routes>
           <Footer />
           <AddPlacePopup
