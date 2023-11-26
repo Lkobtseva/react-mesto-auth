@@ -197,7 +197,7 @@ function App() {
   }
   // проверка токена
 useEffect(() => {
-    const jwt = localStorage.getItem("token");
+    const jwt = localStorage.getItem("jwt");
     if (jwt) {
       authApi
         .checkToken(jwt)
@@ -205,6 +205,7 @@ useEffect(() => {
           if (data) {
             setIsLoggedIn(true); // вход выполнен
             setHeaderEmail(data.data.email);
+            navigate("/");
           }
         })
         .catch((err) => console.log(err));
@@ -263,10 +264,10 @@ useEffect(() => {
             />
           <Routes>
             <Route
-              path="*"
+              path="/"
               element={
                 <ProtectedRoute
-                  element={<Main />}
+                  element={Main}
                   onAddPlace={handleAddPlaceClick}
                   onEditProfile={handleEditProfileClick}
                   onEditAvatar={handleEditAvatarClick}
@@ -286,12 +287,6 @@ useEffect(() => {
             <Route
               path="/sign-in"
               element={<Login onLogin={handleAuthUser} />}
-            />
-            <Route 
-            path="/"
-              element={
-                isLoggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />
-              }
             />
           </Routes>
           <Footer />
