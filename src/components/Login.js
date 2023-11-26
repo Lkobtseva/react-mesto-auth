@@ -12,9 +12,10 @@ function Login({ isLoggedIn, onLogin }) {
   function handlePasswordChange(evt) {
     setPassword(evt.target.value);
   }
-  // отправлка формы
+
   function handleSubmit(e) {
     e.preventDefault();
+    console.log('Logging in...', email, password);
     onLogin(email, password);
   }
 
@@ -31,7 +32,7 @@ function Login({ isLoggedIn, onLogin }) {
         type="email"
         placeholder="Email"
         value={email}
-        className="authen__input"
+        className="auth__input"
         onChange={handleEmailChange}
         autoComplete="off"
       />

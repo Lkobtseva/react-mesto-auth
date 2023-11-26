@@ -1,32 +1,29 @@
 import React from "react";
-import logo from "../images/logo.svg";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import logo from '../images/logo.svg';
+import { Link, useLocation } from 'react-router-dom'
 
-function Header({ onSignOut, headerEmail }) {
-  return (
-    <div className='Header'>
-      <header className="header">
-        <img className="header__logo" src={logo} alt="Логотип" />
-        <nav className="header__nav">
-          <NavLink to="/sign-up" className="header__link">
-            Регистрация
-          </NavLink>
-          <NavLink to="/sign-in" className="header__link">
-            Войти
-          </NavLink>
-          <Outlet />
-        </nav>
-        {headerEmail && (
-          <div className="header__block">
-            <p className="header__email">{headerEmail}</p>
-            <button className="header__exit" onClick={onSignOut}>
-              Выйти
-            </button>
-          </div>
-        )}
-      </header>
-    </div>
-  );
+function Header({isloggedIn, headerEmail, onSignOut}) {
+    const location = useLocation();
+    return(
+        <header className="header">
+            <Link to="/" className="header__logo">
+            <img className="header__logo" src={logo} alt="Логотип" />
+            </Link>
+            {isloggedIn ? (
+                <>
+                    <p className="header__email">{headerEmail}</p>
+                    <button onClick={onSignOut}>Выйти</button>
+                </>
+            ) : (
+                <>
+                    {location.pathname.includes('sign-in') && <Link to="/sign-up" className="header__link">Регистрация</Link>}
+                    {location.pathname.includes('sign-up') && <Link to="/sign-in" className="header__link">Войти</Link>}
+                </>
+            )}
+            
+        </header>
+    )
 }
 
 export default Header;
+

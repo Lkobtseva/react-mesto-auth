@@ -5,7 +5,8 @@
   line-height: 29px;
   color: #000000;
   margin-top: 34px;
-  margin-left: 36px;
+  /*margin-left: 36px;*/
+  margin-left: auto;
   max-width: 310px;
   margin-right: auto;
   text-align: center;

@@ -1,4 +1,3 @@
-import React from "react";
 class Api {
     constructor(config) {
         this._url = config.url;
@@ -49,14 +48,14 @@ class Api {
             body: JSON.stringify(data),
         }).then((res) => this._checkResponce(res));
     }
-    likeCard(card) {
-        return fetch(`${this._url}/cards/${card}/likes`, {
+    likeCard(cardId) {
+        return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: "PUT",
             headers: this._headers,
         }).then((res) => this._checkResponce(res));
     }
-    unlikeCard(card) {
-        return fetch(`${this._url}/cards/${card}/likes`, {
+    unlikeCard(cardId) {
+        return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: "DELETE",
             headers: this._headers,
         }).then((res) => this._checkResponce(res));

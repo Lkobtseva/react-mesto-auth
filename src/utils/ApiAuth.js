@@ -3,11 +3,12 @@ class AuthApi {
       this._baseUrl = baseUrl;
     }
     // проверяет есть ли ошибка
-    _checkError(res) {
+    _checkError(res, error) {
       if (res.ok) {
         return res.json();
       }
-      return Promise.reject(`Статус ошибки: ${res.status}`);
+      return Promise.reject(`Статус ошибки: ${res.status}`, error);
+  
     }
     // регистрация пользователя
     registerUser(email, password) {
@@ -37,7 +38,7 @@ class AuthApi {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
       }).then((res) => this._checkError(res));
     }

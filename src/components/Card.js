@@ -1,5 +1,4 @@
 import React from "react";
-import App from "./App.js";
 
 import { CurrentUserContext } from "../context/CurrentUserContext.js";
 function Card(card) {

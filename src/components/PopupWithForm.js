@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import useEscapeAndOutsideClick from "../hooks/useEscapeAndOutsideClick.js";
 
 export default function PopupWithForm(props) {
