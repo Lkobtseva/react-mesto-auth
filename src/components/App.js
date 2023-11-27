@@ -151,20 +151,6 @@ function App() {
     setIsLoading(true);
   }
 
-  useEffect(() => {
-    function closeByEscape(evt) {
-      if (evt.key === "Escape") {
-        closeAllPopups();
-      }
-    }
-    if (isOpen) {
-      document.addEventListener("keydown", closeByEscape);
-      return () => {
-        document.removeEventListener("keydown", closeByEscape);
-      };
-    }
-  }, [isOpen]);
-
   // регистрация пользователя
   function handleRegisterUser(email, password) {
     authApi
